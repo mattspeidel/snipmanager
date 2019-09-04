@@ -114,9 +114,9 @@ body {
     border-right: .1em solid orange; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .2em; /* Adjust as needed */
+    letter-spacing: .17em; /* Adjust as needed */
     animation: 
-      typing 3.5s steps(40, end),
+      typing 4.5s steps(40, end),
       blink-caret .75s steps(40, end) infinite;
   }
   
@@ -130,4 +130,35 @@ body {
   @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: orange; }
+  }
+
+  .menudropBtn {
+      height: 39px;
+      margin-right: 0;
+      margin-left: auto;
+  }
+
+.theNavBar {
+    text-align: center;
+}
+
+@media only screen and (max-width: 925px) {
+    body{
+        margin-top: 100px;
+    }
+}
+
+  @media only screen and (max-width: 600px) {
+    #searchInput{
+        width: fit-content;
+    }
+    .menuWelcome{
+        display: none;
+    }
+    .nav-link{
+        padding: 8px;
+    }
+    .fullMenu{
+        justify-content: space-between;
+    }
   }

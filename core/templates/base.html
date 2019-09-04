@@ -17,31 +17,33 @@
 <header>
 
     {% load socialaccount %}
-    <nav class='nav justify-content-between border-dark border-bottom bg-light fixed-top shadow'>
-        <div class="row justify-content-start">
+    <nav class='nav justify-content-between border-dark border-bottom bg-light fixed-top shadow theNavBar'>
+        <div class="row justify-content-start fullMenu">
+                {% if user.is_authenticated %}
+                <a class="nav-link align-middle text-secondary font-weight-light menuWelcome">Welcome, {{ user.username }}!</a>
+                <a class="nav-link align-middle" href="{% url 'add-snippet' %}">Add snip</a>
+                <a class='nav-link align-middle' id="loggedIn" data-username="{{ user.pk }}"
+                    data-userstring="{{ user.username }}" href="{% url 'user-home' user.username %}">Your snips</a>
+                <a class="nav-link align-middle" href="{% url 'account_logout' %}">Sign Out</a>
+                <a class="nav-link align-middle font-weight-bold" href="{% url 'index' %}">Home</a>
+                {% else %}
+                <a class='nav-link align-middle' href="{% url 'account_login' %}">Sign In</a>
+                <a class="nav-link align-middle" href="{% provider_login_url 'github' %}">Sign In With GitHub</a>
+                <a class="nav-link align-middle font-weight-bold" href="{% url 'index' %}">Home</a>
+                {% endif %}
+            </div>
+        <div class="row justify-content-end">
             <select id='searchTerm' class="btn btn-outline-secondary">
-                <option value='snippets'>All users' snippets</option>
-                <option value='own'>My own snippets</option>
+                <option value='snippets'>All snips</option>
+                <option value='own'>My snips</option>
             </select>
             <div id='searchBox'>
                 <input type="text" id="searchInput" placeholder="Search snippets..."><button id="searchButton"
                     class='buttons btn btn-outline-primary' type="submit">Search</button>
             </div>
         </div>
-        <div class="row justify-content-end">
-            {% if user.is_authenticated %}
-            <a class="nav-link align-middle text-secondary font-weight-light">Welcome, {{ user.username }}!</a>
-            <a class="nav-link align-middle" href="{% url 'add-snippet' %}">Add snippet</a>
-            <a class='nav-link align-middle' id="loggedIn" data-username="{{ user.pk }}"
-                data-userstring="{{ user.username }}" href="{% url 'user-home' user.username %}">Your snippets</a>
-            <a class="nav-link align-middle" href="{% url 'account_logout' %}">Sign Out</a>
-            <a class="nav-link align-middle font-weight-bold" href="{% url 'index' %}">Home</a>
-            {% else %}
-            <a class='nav-link align-middle' href="{% url 'account_login' %}">Sign In</a>
-            <a class="nav-link align-middle" href="{% provider_login_url 'github' %}">Sign In With GitHub</a>
-            <a class="nav-link align-middle font-weight-bold" href="{% url 'index' %}">Home</a>
-            {% endif %}
-        </div>
+        
+        
     </nav>
 
 
